@@ -1,7 +1,4 @@
 #!/usr/bin/python3
-#
-# You must enable assistive technologies before running this!
-# gconftool-2 --set "/desktop/gnome/interface/accessibility" --type boolean "True"
 
 import pyatspi
 from traceback import *
