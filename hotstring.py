@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 #
 # You must enable assistive technologies before running this!
 # gconftool-2 --set "/desktop/gnome/interface/accessibility" --type boolean "True"
@@ -7,10 +7,11 @@ import pyatspi
 from traceback import *
 
 abbrs = {
-    'vasi': 'pants',
-    'ms': 'M$',
-    'linux': 'GNU/Linux',
-    'faq': 'Please read the dagnabbed FAQ!'
+    'perche`': 'perché',
+    'ne`': 'né',
+    'piu`': 'più',
+    'pero`': 'però',
+    'e`': 'è' 
 }
 
 def handler(event):
@@ -29,7 +30,7 @@ def handler(event):
     start, length = event.detail1, event.detail2
     # If multiple chars are typed in quick succession, only one insert event is
     # generated. So we need to look at each character of the event in turn
-    for off_end in xrange(start + 1, start + length + 1):
+    for off_end in range(start + 1, start + length + 1):
         for k, v in abbrs.items(): # TODO: define an order?
             if len(k) <= off_end: # don't go past beginning
                 off_start = off_end - len(k)
