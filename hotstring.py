@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 
 import pyatspi
+from sys import getsizeof
 from traceback import *
 
 abbrs = {
@@ -36,8 +37,9 @@ def handler(event):
                     # OpenOffice has drawing problems when you arbitrarily
                     # modify its text: Use keystrokes instead?
                     txt_iface.deleteText(off_start, off_end)
-                    txt_iface.insertText(off_start, v, len(v))
-                    txt_iface.setCaretOffset(off_start + len(v))
+                    vencoded = v.encode("utf-8")
+                    txt_iface.insertText(off_start, v, len(vencoded))
+                    txt_iface.setCaretOffset(off_start + len(vencoded)-1)
                     handler.spurious = False
                     break
 # 'deleteText' triggers a spurious 'insert' notification, detect it
